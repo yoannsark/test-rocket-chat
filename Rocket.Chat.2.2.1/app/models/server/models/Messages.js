@@ -1109,6 +1109,28 @@ export class Messages extends Base {
 	findThreadsByRoomId(rid, skip, limit) {
 		return this.find({ rid, tcount: { $exists: true } }, { sort: { tlm: -1 }, skip, limit });
 	}
+
+	findLastMessagesByUserId(userId, skip, limit) {
+	    const query = {
+	        "u._id": userId,
+            t: { $exists: false }
+        }
+
+        const options = {
+            skip,
+            limit,
+            sort: {
+                ts: -1
+            },
+            fields: {
+                rid: 1,
+                msg: 1,
+                ts: 1,
+            },
+        };
+
+        return this.find(query, options)
+    }
 }
 
 export default new Messages();

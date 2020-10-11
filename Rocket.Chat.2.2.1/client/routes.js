@@ -143,6 +143,17 @@ FlowRouter.route('/directory', {
 	}],
 });
 
+FlowRouter.route('/last-messages', {
+    name: 'last-messages',
+
+    action() {
+        BlazeLayout.render('main', { center: 'lastMessages' });
+    },
+    triggersExit: [function() {
+        $('.main-content').addClass('rc-old');
+    }],
+});
+
 FlowRouter.route('/account/:group?', {
 	name: 'account',
 

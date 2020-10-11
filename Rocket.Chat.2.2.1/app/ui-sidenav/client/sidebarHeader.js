@@ -57,6 +57,13 @@ export const toolbarSearch = {
 };
 
 const toolbarButtons = (user) => [{
+    name: 'Last messages',
+    icon: 'clock',
+    action: () => {
+        menu.close();
+        FlowRouter.go('last-messages');
+    },
+},{
 	name: t('Search'),
 	icon: 'magnifier',
 	action: () => {

@@ -1,0 +1,46 @@
+<template name="lastMessages">
+    <section class="last-messages">
+        {{> header sectionName="Last messages" hideHelp=true fullpage=true}}
+
+        <div class="rc-table-content">
+            {{#table fixed='true' onScroll=onTableScroll onResize=onTableResize}}
+                <thead>
+                <tr>
+                    <th class="last-messages__room-name">
+                        <div class="table-fake-th"><span>Room Name</span></div>
+                    </th>
+                    <th class="last-messages__message">
+                        <div class="table-fake-th"><span>Message content</span></div>
+                    </th>
+                    <th class="last-messages__date">
+                        <div class="table-fake-th"><span>Date</span></div>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each searchResults}}
+                    <tr class="table-no-click">
+                        <td>{{roomName}}</td>
+                        <td>{{messageContent}}</td>
+                        <td>{{date}}</td>
+                    </tr>
+                {{else}}
+                    <tr class="table-no-click">
+                        <td colspan="2">
+                            {{_ "No_results_found"}}
+                        </td>
+                    </tr>
+                {{/each}}
+                {{#if isLoading}}
+                    <tr class="table-no-click">
+                        <td class="table-loading-td"
+                            colspan="2">
+                            {{> loading}}
+                        </td>
+                    </tr>
+                {{/if}}
+                </tbody>
+            {{/table}}
+        </div>
+    </section>
+</template>
